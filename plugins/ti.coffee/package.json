@@ -1,0 +1,15 @@
+{
+  "name": "ti.coffee",
+  "version": "0.1.0",
+  "description": "Simple CoffeeScript for Titanium Appcelerator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Héctor Menéndez",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "coffee-script": "~1.6.3",
+    "execSync": "~1.0.1-pre"
+  }
+}
