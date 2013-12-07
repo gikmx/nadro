@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+iosLaunchConfigurationAttributes/ATTR_MINIFY=true
+iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=nadro.poc
+iosLaunchConfigurationAttributes/appid=mx.gik.nadro.poc
+iosLaunchConfigurationAttributes/certificate=Hector Menendez (G2D3ZCR7X9)
+iosLaunchConfigurationAttributes/keychain=/Users/etor/Library/Keychains/login.keychain
+iosLaunchConfigurationAttributes/sdk_version=7.0
+iosLaunchConfigurationAttributes/uuid=31D18D1F-DAF8-4B41-AD6A-E1258347B74D
+provisioning_profiles/development/25C8FFE8-EA8C-4C6A-9D05-F6166D4E10C9/appid=com.yappme.yappme
+provisioning_profiles/development/25C8FFE8-EA8C-4C6A-9D05-F6166D4E10C9/name=YappMe_Development
+provisioning_profiles/development/25C8FFE8-EA8C-4C6A-9D05-F6166D4E10C9/uuid=25C8FFE8-EA8C-4C6A-9D05-F6166D4E10C9
+provisioning_profiles/development/31D18D1F-DAF8-4B41-AD6A-E1258347B74D/appid=*
+provisioning_profiles/development/31D18D1F-DAF8-4B41-AD6A-E1258347B74D/name=iOS Team Provisioning Profile\: *
+provisioning_profiles/development/31D18D1F-DAF8-4B41-AD6A-E1258347B74D/uuid=31D18D1F-DAF8-4B41-AD6A-E1258347B74D
+provisioning_profiles/development/BCC305AD-BFC0-4C4C-A055-5E9E27116061/appid=mx.axa.adjusterConcept
+provisioning_profiles/development/BCC305AD-BFC0-4C4C-A055-5E9E27116061/name=AXA PoC
+provisioning_profiles/development/BCC305AD-BFC0-4C4C-A055-5E9E27116061/uuid=BCC305AD-BFC0-4C4C-A055-5E9E27116061

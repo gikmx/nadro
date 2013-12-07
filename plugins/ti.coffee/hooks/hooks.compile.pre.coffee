@@ -1,13 +1,14 @@
-
 # Node Modules
 FS    = require 'fs'
 Path  = require 'path'
 Proc  = require 'child_process'
 
-# NPM modules
-SH     = require 'execSync'
-Coffee = require 'coffee-script'
-
+try
+	# NPM modules
+	SH     = require 'execSync'
+	Coffee = require 'coffee-script'
+catch e
+	return (console.error "Error in Script:", e)
 
 path =
 	ae        : 'ae'
