@@ -177,7 +177,7 @@ dashboardTab = Titanium.UI.createTab
 
 laboratoryWindow = Titanium.UI.createWindow
 	title : "Genealogía"
-	url   : "lab.js"
+	url   : "/bundles/lab.js"
 
 laboratoryTab = Titanium.UI.createTab
 	icon   : "genialogia.png"
