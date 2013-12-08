@@ -1,4 +1,4 @@
 module.exports =
 
 	"window":
-		textColor: "black"
+		textColor: "black" # Testing purposes only

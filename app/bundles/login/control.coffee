@@ -9,6 +9,34 @@ module.exports = class extends Bundle
 		# TODO: Setting a path shouldn't be necessary
 		super '/bundles/login'
 
-		@$ 'window', backgroundColor:'blue'
+		@$ 'window',
+			title: "Acceso"
+			backgroundColor: "blue" # Del this
 
-		alert(@)
+		@$window.$ 'view#contain1',
+			backgroundColor: 'yellow'
+			top: '0'
+			left: '0'
+			width: '50%'
+			height: '50%'
+
+		@$window.$ 'view#contain2',
+			bottom: '0'
+			right : '0'
+			backgroundColor: 'red'
+			width: '50%'
+			height: '50%'
+
+
+		@$window.$contain1.$ 'view',
+			width: '50%'
+			height: '50%'
+			backgroundColor: 'green'
+
+		@$window.$contain2.$ 'view',
+			width: '50%'
+			height: '50%'
+			backgroundColor: 'cyan'
+
+
+		@$window.open()

@@ -24,7 +24,11 @@ module.exports = class
 
 	$: (selector, properties = {}, $parent = null)->
 
-		$parent = @ if not $parent
+		isRoot = false
+
+		if not $parent
+			$parent = @ 
+			isRoot  = true
 
 		target = Style.selector String(original = selector)
 
@@ -45,18 +49,20 @@ module.exports = class
 	 	# if the user specified an ID use that instead for the variable
 		name = "$#{if target.id then target.id else target.element}"
 
-		$element = fn(style)
+		$element   = fn(style)
+		$element.$ = wrapper(@, $element)
 
+		# Add the element to its parent when it's not root.
+		$parent.add $element if not isRoot
+			
+		
 		# if an element exist with that name, convert it to array
 		$parent[name] =
-			if Utils.is.undefined $parent[name]
+			if not Utils.is.object $parent[name] and not Utils.is.array $parent[name]
 			then $element
 			else
 				if Utils.is.array $parent[name]
-				then $parent[name].concat [$element]
-				else
-					if Utils.is.object $parent[name]
-					then [$parent[name]].concat [$element]
-					else $element
+				then  $parent[name].concat  [$element]
+				else [$parent[name]].concat [$element]
 
 		return $parent
