@@ -1,25 +1,21 @@
 TabGroup = require '/bundles/tabs/control'
 tabgroup = new TabGroup()
-
 return
-dashboardWin = Ti.UI.createWindow
-	title           : "Login"
-	backgroundColor : "blue"
+tabGroup = Ti.UI.createTabGroup()
 
-laboratoryWindow = Ti.UI.createWindow
-	title : "Genealogía"
-	backgroundColor : "cyan"
-
-#Creacion de tabs
 dashboardTab = Ti.UI.createTab
 	icon   : "dashboard.png"
 	title  : "Dashboard"
-	window : dashboardWin
+	window : Ti.UI.createWindow
+		title           : "Login"
+		backgroundColor : "blue"
 
 laboratoryTab = Ti.UI.createTab
 	icon   : "genealogia.png"
 	title  : "Genealogia"
-	window : laboratoryWindow
+	window : Ti.UI.createWindow
+		title : "Genealogía"
+		backgroundColor : "cyan"
 
 tabGroup.addTab dashboardTab
 tabGroup.addTab laboratoryTab

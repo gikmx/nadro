@@ -6,31 +6,22 @@ Genealogy = require '/bundles/tabs/genealogy/control'
 module.exports = class extends Bundle
 
 	constructor: ->
-		super '/bundles/tabs'
 
-		@$ 'tabGroup'
+		super '/bundles/tabs'
 
 		@dashboard = new Dashboard()
 		@genealogy = new Genealogy()
 
-		@$tabGroup.$ 'tab#dashboard',
-			title  : @dashboard.$window.title
+		@$ 'tabGroup'
+
+		@$tabGroup.addTab Ti.UI.createTab
+			icon   : "dashboard.png"
 			window : @dashboard.$window
+			title  : @dashboard.title
 
-		@$tabGroup.$ 'tab#genealogy',
-			title  : @genealogy.$window.title
+		@$tabGroup.addTab Ti.UI.createTab
+			icon   : "genealogia.png"
 			window : @genealogy.$window
+			title  : @genealogy.title
 
-		try
-			@$tabGroup.open()
-		catch e
-			alert(e)
-		
-		
-
-	open: ()->
-		try
-			@$tabGroup.open()
-		catch e
-			throw new Error e
-		
+		@$tabGroup.open()
