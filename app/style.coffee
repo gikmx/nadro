@@ -1,4 +1,5 @@
 module.exports =
 
 	"window":
-		textColor: "black" # Testing purposes only
+		backgroundColor : "blue"
+		backgroundImage : "bg.png"

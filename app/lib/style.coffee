@@ -2,9 +2,9 @@ module.exports =
 
 	selector: (target)->
 		match = 
-			id     : null
-			element: null
-			classes: []
+			id      : null
+			element : null
+			classes : []
 
 		# get element names
 		match.element = m[1] if (m = target.match /^\s*([a-z][a-z0-9\-\_]*)/i)
@@ -18,4 +18,6 @@ module.exports =
 
 	# TODO: Advanced property mixing
 	render: (selector, style)->
-		return if typeof style[selector] isnt undefined then style[selector] else {} 
+		if typeof style[selector] isnt 'undefined'
+		then style[selector]
+		else {}

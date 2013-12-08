@@ -10,10 +10,8 @@ module.exports = class
 	_style : null
 
 	# This private method, makes sure to always return corresponding "$creator"
-	wrapper = (context, $parent)-> return ->
-		args = Array::slice.call arguments
-		args.push $parent
-		return context.$.apply context, args
+	wrapper = (context, $parent)-> return (selector, properties)->
+		return context.$.call context, selector, properties, $parent
 
 	constructor: (@_path)-> 
 		throw new Error 'Missing path' if typeof @_path isnt 'string'
@@ -22,7 +20,7 @@ module.exports = class
 		@_style = Utils.extend(_style, Utils.require("#{@_path}/style") or {})
 
 
-	$: (selector, properties = {}, $parent = null)->
+	$: (selector='view', properties={}, $parent=null)->
 
 		isRoot = false
 
@@ -30,7 +28,7 @@ module.exports = class
 			$parent = @ 
 			isRoot  = true
 
-		target = Style.selector String(original = selector)
+		target = Style.selector(selector = String selector)
 
 		if not target.element
 			throw new Error "Expecting an element."
