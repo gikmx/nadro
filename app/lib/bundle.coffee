@@ -29,8 +29,9 @@ module.exports = class
 			isRoot  = true
 
 		target  = Style.selector(selector = String selector)
-		element = "#{String(target.element)[0].toUpperCase()}#{target.element.slice(1)}"
-
+		if not Utils.is.string target.element
+			throw new Error "Could not find an element on '#{selector}'."
+		element = "#{target.element[0].toUpperCase()}#{target.element.slice(1)}"
 		try
 			fn = Ti.UI["create#{element}"]
 		catch e
@@ -48,15 +49,14 @@ module.exports = class
 
 		# Add the element to its parent when it's not root.
 		$parent.add $element if not isRoot
-			
 		
-		# if an element exist with that name, convert it to array
-		$parent[name] =
-			if not Utils.is.object $parent[name] and not Utils.is.array $parent[name]
-			then $element
-			else
-				if Utils.is.array $parent[name]
-				then  $parent[name].concat  [$element]
-				else [$parent[name]].concat [$element]
-
+		# there arent  neither objects nor array with this name (undefined)
+		if not Utils.is.object($parent[name]) and not Utils.is.array($parent[name])
+			$parent[name] = $element
+		# there is already an array with this name, add a new element
+		else if Utils.is.array $parent[name]
+			$parent[name].push $element
+		# there is already on object with this name, convert to array and add element
+		else
+			$parent[name] = [ $parent[name] ].concat [$element]
 		return $parent
