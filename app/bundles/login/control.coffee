@@ -12,7 +12,19 @@ module.exports = class extends Bundle
 		@$ 'window',
 			title: "Acceso"
 
-		@$window.$()
+		@$window.$ 'imageView#corner'
+
+		@$window.$ 'view#login',
+			width  : 967
+			height : Ti.UI.SIZE
+			layout : 'horizontal'
+
+		@$window.$login.$ 'view.line'
+		@$window.$login.$ 'view.line'
+
+		alert(@$window.$login.$view)
+
+
 
 
 		@$window.open()

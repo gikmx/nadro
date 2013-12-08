@@ -1,5 +1,7 @@
 module.exports =
 
 	"window":
-		backgroundColor : "blue"
 		backgroundImage : "bg.png"
+
+	"view.line":
+		backgroundColor: 'red'

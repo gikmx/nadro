@@ -1,8 +1,5 @@
 Login = require '/bundles/login/control'
-
-
 login = new Login()
-
 
 return 
 Medicamento = require './data/medicamento'

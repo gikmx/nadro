@@ -28,11 +28,7 @@ module.exports = class
 			$parent = @ 
 			isRoot  = true
 
-		target = Style.selector(selector = String selector)
-
-		if not target.element
-			throw new Error "Expecting an element."
-
+		target  = Style.selector(selector = String selector)
 		element = "#{String(target.element)[0].toUpperCase()}#{target.element.slice(1)}"
 
 		try
