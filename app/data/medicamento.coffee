@@ -14,11 +14,11 @@ module.exports = [
 
 		lote :
 			id        : "BK12CCEK063" 
-			caducidad : new Date(2015, 03-1)
+			caducidad : new Date(2015, 2)
 			cedi      : "CAD Toluca" 
 
 			fabrica :
-				fecha  : new Date(2013, 03-1) 
+				fecha  : new Date(2013, 2) 
 				nombre : "Pfizer"
 				planta : "Pfizer Toluca"
 
@@ -40,27 +40,27 @@ module.exports = [
 
 		eventos :[
 			(
-				fecha   : new Date(2013, 03-1, 15)
+				fecha   : new Date(2013, 2, 15)
 				reporte : "Producto Terminado en Planta Pfizer Toluca"
 				geo     : (lat: "19.289866", lon: "-99.625432")
 			),(
-				fecha   : new Date(2013, 03-1, 15)
+				fecha   : new Date(2013, 2, 15)
 				reporte : "Entrada a Almacén CAD Toluca"
 				geo     : (lat: "19.291874", lon: "-99.622339")
 			),(
-				fecha   : new Date(2013, 03-1, 18)
+				fecha   : new Date(2013, 2, 18)
 				reporte : "Embarque CAD Toluca"
 				geo     : (lat: "19.291874", lon: "-99.622339")
 			),(
-				fecha   : new Date(2013, 03-1, 20)
+				fecha   : new Date(2013, 2, 20)
 				reporte : "Salida de Almacén CAD Toluca"
 				geo     : (lat: "19.291874", lon: "-99.622339")
 			),(
-				fecha   : new Date(2013, 03-1, 21)
+				fecha   : new Date(2013, 2, 21)
 				reporte : "Reparto CAD Toluca"
 				geo     : (lat: "19.291874", lon: "-99.622339")
 			),(
-				fecha   : new Date(2013, 04-1, 01)
+				fecha   : new Date(2013, 3, 1)
 				reporte : "Entrega del farmaco en el CEDIS NADRO Morelia"
 				geo     : (lat: "19.291165", lon: "-99.623975")
 			)
@@ -81,11 +81,11 @@ module.exports = [
 
 		lote :
 			id        : "012FN105B" 
-			caducidad : new Date(2014, 06-1)
+			caducidad : new Date(2014, 5)
 			cedi      : "Grimann Naucalpan" 
 
 			fabrica :
-				fecha  : new Date(2012, 05-1) 
+				fecha  : new Date(2012, 4) 
 				nombre : "Sanfer"
 				planta : "Grimann Lerma"
 
@@ -107,27 +107,27 @@ module.exports = [
 
 		eventos :[
 			(
-				fecha   : new Date(2012, 05-1, 20)
+				fecha   : new Date(2012, 4, 20)
 				reporte : "Producto Terminado en Planta Sanfer - Grimann Lerma"
 				geo     : (loc: "19.481876", lon: "-99.2349850")
 			),(
-				fecha   : new Date(2012, 05-1, 22)
+				fecha   : new Date(2012, 4, 22)
 				reporte : "Entrada a Almacén CEDIS Sanfer - Grimann Naucalpan"
 				geo     : (loc: "19.480940", lon: "-99.2340410")
 			),(
-				fecha   : new Date(2012, 05-1, 25)
+				fecha   : new Date(2012, 4, 25)
 				reporte : "Embarque CEDIS Sanfer - Grimann Naucalpan"
 				geo     : (loc: "19.480940", lon: "-99.2340410")
 			),(
-				fecha   : new Date(2012, 05-1, 30)
+				fecha   : new Date(2012, 4, 30)
 				reporte : "Salida de Almacén CEDIS Sanfer - Grimann Naucalpan"
 				geo     : (loc: "19.480940", lon: "-99.2340410")
 			),(
-				fecha   : new Date(2012, 06-1, 10)
+				fecha   : new Date(2012, 5, 10)
 				reporte : "Reparto CEDIS Sanfer - Grimann Naucalpan"
 				geo     : (loc: "19.480940", lon: "-99.2340410")
 			),(
-				fecha   : new Date(2012, 06-1, 15)
+				fecha   : new Date(2012, 5, 15)
 				reporte : "Entrega del farmaco en el CEDIS NADRO México Sur"
 				geo     : (loc: "19.687395", lon: "-100.550727")
 			)
