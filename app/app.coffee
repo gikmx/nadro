@@ -1,3 +1,34 @@
+Medicamento = require './data/medicamento'
+Ti.API.info JSON.stringify(Medicamento.shift())
+
+medView = (args) ->
+	view = Ti.UI.createView
+		layout:'vertical'
+		backgroundColor:'white'
+		left:50
+		top:50
+
+	title = Ti.UI.createLabel
+		color:'black'
+		font:{fontSize:17}
+		text:args.title_
+		textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER
+		width: Ti.UI.SIZE, height: Ti.UI.SIZE
+
+	view.add(title)
+
+	subTitle = Ti.UI.createLabel
+		color:'#437A1C'
+		font:{fontSize:17}
+		text:args.subtitle_
+		textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER
+		width: Ti.UI.SIZE, height: Ti.UI.SIZE
+
+	view.add(subTitle)
+
+	return view
+
+
 tabGroup = Titanium.UI.createTabGroup()
 
 dashboardWin = Titanium.UI.createWindow
@@ -61,11 +92,31 @@ container.add(generalContainer)
 
 ## med container
 medContainer = Ti.UI.createView
+	# height          : Ti.UI.SIZE
 	height          : '50%'
 	backgroundColor : 'purple'
 	left            : 0
+	top             : 0
 
 generalContainer.add(medContainer)
+
+medTitle = Ti.UI.createView
+	height : 40
+	width  : '100%'
+	top : 10
+	left : 0
+	backgroundColor : '#437A1C'
+
+medContainer.add(medTitle)
+
+medLabel = Ti.UI.createLabel
+	color : 'white'
+	font : { fontSize:17 },
+	text : 'Medicamento'
+	textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+	width: Ti.UI.SIZE, height: Ti.UI.SIZE
+
+medTitle.add(medLabel)
 
 medTable = Ti.UI.createTableView
 	height : Ti.UI.SIZE
@@ -73,17 +124,22 @@ medTable = Ti.UI.createTableView
 
 medData = []
 
-row = Titanium.UI.createTableViewRow
-	selectedColor : 'red'
+alert 'hola'
+for i in Medicamento.shift()
+	row = Titanium.UI.createTableViewRow
+		selectedColor : 'red'
+		medId         : i.id
 
-rowContainer = Ti.UI.createView
-	height : 30
-	width  : '100%'
-	backgroundColor : 'magenta'
+	rowContainer = Ti.UI.createView
+		height : 30
+		width  : '100%'
+		backgroundColor : 'magenta'
 
-row.add(rowContainer)
+	rowContainer.add(descriptionView)
 
-medData.push(row)
+	row.add(rowContainer)
+
+	medData.push(row)
 
 medTable.setData(medData)
 
