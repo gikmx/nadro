@@ -47,7 +47,12 @@ module.exports = class
 		$element.$ = wrapper(@, $element)
 
 		# Add the element to its parent when it's not root.
-		$parent.add $element if not isRoot
+		if not isRoot
+			if target.element is 'tab'
+				$parent.addTab $element
+			else	
+				$parent.add $element 
+
 			
 		
 		# if an element exist with that name, convert it to array
