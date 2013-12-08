@@ -6,10 +6,26 @@ module.exports =
 		width  : '33%'
 		image  : 'logo.png'
 
+	'view#contain':
+		width  : '50%'
+		height : Ti.UI.SIZE
+		layout : 'horizontal'
+
+	'button':
+		borderRadius    : 5
+		left            : 10
+		backgroundColor : '#70A804'
+		width           : Ti.UI.FILL
+		height          : 80
+		title           : "Entrar"
+		color           : '#FFFFFF'
+		font            : fontWeight: 'bold'
+
+
 	'view#login':
 		borderRadius    : 5
 		backgroundColor : 'rgba(255,255,255, 0.9)'
-		width           : '50%'
+		width           : '80%'
 		height          : Ti.UI.SIZE
 		layout          : 'vertical'
 
@@ -29,7 +45,7 @@ module.exports =
 	'label': 
 		left      : 10
 		right     : 10
-		width     : '20%'
+		width     : '30%'
 		height    : Ti.UI.FILL
 		textAlign : 'right'
 

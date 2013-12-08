@@ -1,5 +1,11 @@
-Login = require '/bundles/login/control'
+Login = require '/bundles/login/view'
+Tabs  = require '/bundles/tabs/view'
+
 login = new Login()
+tabs = new Tabs()
+
+login.onClick ->
+	tabs.open()	
 
 return 
 Medicamento = require './data/medicamento'

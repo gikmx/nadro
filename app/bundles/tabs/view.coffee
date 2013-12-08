@@ -1,7 +1,7 @@
 Bundle    = require '/lib/bundle'
 
-Dashboard = require '/bundles/tabs/dashboard/control'
-Genealogy = require '/bundles/tabs/genealogy/control'
+Dashboard = require '/bundles/tabs/dashboard/view'
+Genealogy = require '/bundles/tabs/genealogy/view'
 
 module.exports = class extends Bundle
 
@@ -24,4 +24,5 @@ module.exports = class extends Bundle
 			window : @genealogy.$window
 			title  : @genealogy.title
 
-		@$tabGroup.open()
+	open: (tab=0)->
+		@$tabGroup.open animated:true
