@@ -29,7 +29,7 @@ module.exports = [
 				nombre : "comprimidos"
 				sustancia : "Celecoxib"
 				datosCompra :
-					proveedor   : "Empaques Metálicos S.A de C.V."
+					proveedor   : "Fármacos de México S.A de C.V."
 					lote        : "BB2245"
 					fechaCompra : new Date(2013, 3, 10)
 					ordenCompra : "P03455"
