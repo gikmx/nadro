@@ -40,7 +40,21 @@ module.exports = class extends Bundle
 		@$window.$header.$searchBar.addEventListener 'return', (e)=>
 			callback.call @, e
 
-	search: (text)->
+	search: (source)->
+
+		source.blur()
+
+		if source.value.match /1111/g
+			lab = Data.laboratorio[1]
+		else if source.value.match /1234/g
+			lab = Data.laboratorio[0]
+		else
+			return (@$ 'alertDialog',
+				_ro     : true
+				message : "El medicamento no existe."
+				title   : "Lo sentimos,"
+				ok      : "OK"
+			).show()
 
 		$table = Ti.UI.createTableView
 			width      : Ti.UI.FILL
@@ -50,24 +64,23 @@ module.exports = class extends Bundle
 			bottom     : 10
 			headerView : @$ 'label.tableHeader', (_ro: true, text: "Medicamento")
 
+		fields = [
+			(name: "No. de Serie"      , value: lab.id )
+			(name: "Descripción"       , value: lab.descripcion)
+			(name: "Presentación"      , value: lab.presentacion)
+			(name: "Precio al púlblico", value: parseFloat(lab.precio).toFixed(2))
+			(name: "Fórmula"           , value: lab.formula)
+		]
+		for field in fields
+			$row  = Ti.UI.createTableViewRow
+				selectedBackgroundColor: "#C8C8C8"
+			$view =  @$ 'view.tableRow', (_ro:true)
 
-		for lab, i in Data.laboratorio
-			fields = [
-				(name: "No. de Serie"      , value: lab.id )
-				(name: "Descripción"       , value: lab.descripcion)
-				(name: "Presentación"      , value: lab.presentacion)
-				(name: "Precio al púlblico", value: parseFloat(lab.precio).toFixed(2))
-				(name: "Fórmula"           , value: lab.formula)
-			]
-			for field in fields
-				$row  = Ti.UI.createTableViewRow()
-				$view =  @$ 'view.tableRow', (_ro:true)
+			$view.add @$ 'label.tableRow.bold', (_ro:true, text: field.name)
+			$view.add @$ 'label.tableRow.norm', (_ro:true, text: field.value)
 
-				$view.add @$ 'label.tableRow.bold', (_ro:true, text: field.name)
-				$view.add @$ 'label.tableRow.norm', (_ro:true, text: field.value)
-
-				$row.add $view
-				$table.appendRow $row
+			$row.add $view
+			$table.appendRow $row
 
 		@$window.$content.$back.$view[0].$view[0].add @$window.$content.$back.$tableView1 = $table
 			

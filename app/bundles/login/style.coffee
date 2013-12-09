@@ -17,7 +17,6 @@ module.exports =
 		height          : 80
 		title           : "Entrar"
 
-
 	'view#login':
 		borderRadius    : 5
 		backgroundColor : 'rgba(255,255,255, 0.9)'
