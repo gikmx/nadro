@@ -12,14 +12,10 @@ module.exports =
 		layout : 'horizontal'
 
 	'button':
-		borderRadius    : 5
 		left            : 10
-		backgroundColor : '#70A804'
 		width           : Ti.UI.FILL
 		height          : 80
 		title           : "Entrar"
-		color           : '#FFFFFF'
-		font            : fontWeight: 'bold'
 
 
 	'view#login':
