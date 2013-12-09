@@ -6,4 +6,8 @@ Bundle =
 	tabs  : new (require '/bundles/tabs/view')
 
 Bundle.login.onClick ->
-	Bundle.tabs.open()	
+	Bundle.tabs.open()
+
+	Bundle.tabs.dashboard.onSearch (e)->
+		Bundle.tabs.dashboard.search e.source.value
+

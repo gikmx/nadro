@@ -1,3 +1,6 @@
+Data   =
+	laboratorio: require '/data/laboratorio'
+
 Bundle = require '/lib/bundle'
 
 module.exports = class extends Bundle
@@ -28,11 +31,24 @@ module.exports = class extends Bundle
 		@$window.$content.$back.$ 'view.center'
 		@$window.$content.$back.$ 'view.right'
 		
+		@$window.$content.$back.$view[0].$ 'view.halftop'
+		@$window.$content.$back.$view[0].$ 'view.halftop'
+
+		@$window.$content.$back.$view[0].$view[0].$ 'tableView'
 
 
-		return
+	onSearch: (callback)->
+		@$window.$header.$searchBar.addEventListener 'return', (e)=>
+			callback.call @, e
 
-		@$window.$content.$view[0].$ 'view.halftop'
-		@$window.$content.$view[0].$ 'view.halftop'
+	search: (text)->
+
+		alert(@$ 'tableViewRow', __readOnly: true)
+
+
+		return 
+		data = []
+		for lab, i in Data.laboratorio
+			alert($row)
 
 

@@ -28,6 +28,10 @@ module.exports = class
 			$parent = @ 
 			isRoot  = true
 
+		if Utils.is.object(properties) and properties.__readOnly
+			readOnly = true
+			properties.__readOnly = undefined
+
 		target  = Style.selector(selector = String selector)
 		if not Utils.is.string target.element
 			throw new Error "Could not find an element on '#{selector}'."
@@ -45,6 +49,9 @@ module.exports = class
 		name = "$#{if target.id then target.id else target.element}"
 
 		$element   = fn(style)
+
+		return $element if readOnly
+
 		$element.$ = wrapper(@, $element)
 
 		# Add the element to its parent when it's not root.
