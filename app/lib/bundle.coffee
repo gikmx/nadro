@@ -28,7 +28,7 @@ module.exports = class
 			$parent = @ 
 			isRoot  = true
 
-		if Utils.is.object(properties) and properties.__readOnly
+		if Utils.is.object(properties) and properties._ro
 			readOnly = true
 			properties.__readOnly = undefined
 

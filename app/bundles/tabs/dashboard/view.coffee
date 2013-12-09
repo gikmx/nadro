@@ -34,7 +34,6 @@ module.exports = class extends Bundle
 		@$window.$content.$back.$view[0].$ 'view.halftop'
 		@$window.$content.$back.$view[0].$ 'view.halftop'
 
-		@$window.$content.$back.$view[0].$view[0].$ 'tableView'
 
 
 	onSearch: (callback)->
@@ -43,12 +42,34 @@ module.exports = class extends Bundle
 
 	search: (text)->
 
-		alert(@$ 'tableViewRow', __readOnly: true)
+		$table = Ti.UI.createTableView
+			width      : Ti.UI.FILL
+			left       : 10
+			right      : 10
+			top        : 10
+			bottom     : 10
+			headerView : @$ 'label.tableHeader', (_ro: true, text: "Medicamento")
 
 
-		return 
-		data = []
 		for lab, i in Data.laboratorio
-			alert($row)
+			fields = [
+				(name: "No. de Serie"      , value: lab.id )
+				(name: "Descripción"       , value: lab.descripcion)
+				(name: "Presentación"      , value: lab.presentacion)
+				(name: "Precio al púlblico", value: parseFloat(lab.precio).toFixed(2))
+				(name: "Fórmula"           , value: lab.formula)
+			]
+			for field in fields
+				$row  = Ti.UI.createTableViewRow()
+				$view =  @$ 'view.tableRow', (_ro:true)
+
+				$view.add @$ 'label.tableRow.bold', (_ro:true, text: field.name)
+				$view.add @$ 'label.tableRow.norm', (_ro:true, text: field.value)
+
+				$row.add $view
+				$table.appendRow $row
+
+		@$window.$content.$back.$view[0].$view[0].add @$window.$content.$back.$tableView1 = $table
+			
 
 
