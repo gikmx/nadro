@@ -25,119 +25,123 @@ module.exports = class extends Bundle
 		@$window.$content.$ 'view#frontLineHeader'
 		@$window.$content.$ 'view#frontLineLeft'
 		@$window.$content.$ 'view#frontLineRight'
-		@$window.$content.$ 'view#frontLineMiddle'
 
-		@$window.$content.$back.$ 'view.left', layout:'vertical'
-		@$window.$content.$back.$ 'view.center'
-		@$window.$content.$back.$ 'view.right'
-		
-		@$window.$content.$back.$view[0].$ 'view.halftop'
-		@$window.$content.$back.$view[0].$ 'view.halftop'
+		@$window.$content.$back.$ 'view#left'
+		@$window.$content.$back.$ 'view#center'
+		@$window.$content.$back.$ 'view#right'
+	
+		@$window.$content.$back.$left.$ 'view#leftUp'
+		@$window.$content.$back.$left.$ 'view#leftDw'
+
+		@$window.$content.$back.$center.$ 'view#centerUp'
+		@$window.$content.$back.$center.$ 'view#centerDw'
+
 
 	onSearch: (callback)->
 		@$window.$header.$searchBar.addEventListener 'return', (e)=>
 			callback.call @, e
 
+
 	search: (source)->
 
 		source.blur()
 
-		if source.value.match /1111/g
+		if source.value.match /[\d]*111[\d]*/g
 			lab = Data.laboratorio[1]
-		else if source.value.match /1234/g
+		else if source.value.match /[\d]*123[\d]*/g
 			lab = Data.laboratorio[0]
 		else
-			return (@$ 'alertDialog',
+			$dialog = @$ 'alertDialog',
 				_ro     : true
 				message : "El medicamento no existe."
 				title   : "Lo sentimos,"
 				ok      : "OK"
-			).show()
+			$dialog.show()
+			return 
 
-		$table = Ti.UI.createTableView
-			width      : Ti.UI.FILL
-			left       : 10
-			right      : 10
-			top        : 10
-			bottom     : 10
-			headerView : @$ 'label.tableHeader', (_ro: true, text: "Medicamento")
+		rowOne = (name, value)=>
+			$row = Ti.UI.createTableViewRow selectedBackgroundColor: "#C8C8C8"
+			$row.add ($view = @$ 'view.tableRow.oneLine', _ro:true)
+			$view.add @$ 'label.tableRow.oneLine.bold', (_ro:true, text: name)
+			$view.add @$ 'label.tableRow.oneLine.norm', (_ro:true, text: value)
+			return $row
 
-		fields = [
-			(name: "No. de Serie"      , value: lab.id )
-			(name: "Descripción"       , value: lab.descripcion)
-			(name: "Presentación"      , value: lab.presentacion)
-			(name: "Precio al púlblico", value: parseFloat(lab.precio).toFixed(2))
-			(name: "Fórmula"           , value: lab.formula)
+
+		rowTwo = (name, value)=>
+			$row  = Ti.UI.createTableViewRow selectedBackgroundColor: "#C8C8C8"
+			$row.add ($view = @$ 'view.tableRow.twoLine', _ro:true)
+			$view.add @$ 'label.tableRow.twoLine.bold', (_ro:true, text: name)
+			$view.add @$ 'label.tableRow.twoLine.norm', (_ro:true, text: value)
+			return $row
+
+		rowTri = (date, desc)=>
+			$row  = Ti.UI.createTableViewRow selectedBackgroundColor: "#C8C8C8"
+			$row.add ($view1 = @$ 'view.tableRow.triLine'   , (_ro:true))
+			$view1.add @$ 'label.tableRow.triLine.norm'     , (_ro:true, text: desc)
+			$view1.add ($view2 = @$ 'view.tableRow.oneLine' , (_ro:true))
+			$view2.add @$ 'imageView.tableRow.triLine'      , (_ro:true)
+			$view2.add @$ 'label.tableRow.oneLine.bold'     , (_ro:true, text: date)
+			return $row
+
+		tables = [
+			(
+				name   : "Medicamento"
+				title  : "Medicamento"
+				parent : @$window.$content.$back.$left.$leftUp
+				rows   : [
+					rowTwo "No. de Serie:", lab.id          
+					rowTwo "Descripción:", lab.descripcion 
+					rowTwo "Presentación:", lab.presentacion
+					rowTwo "Precio al público:", lab.precio      
+					rowTwo "Fórmula:", lab.formula     
+				]
+			),(
+				name   : "Substancia"
+				title  : "Substancia Activa"
+				parent : @$window.$content.$back.$left.$leftDw
+				rows   : [
+					rowTwo "Materia Prima:",  lab.materiaPrima.nombre
+					rowTwo "Dósis:",  lab.materiaPrima.dosis
+					rowTwo "Proveedor:",  lab.materiaPrima.proveedor
+					rowTwo "Lote:",  lab.materiaPrima.lote
+				]
+			),(
+				name   : "Lote"
+				title  : "Lote"
+				parent : @$window.$content.$back.$center.$centerUp
+				rows   : [
+					rowTwo "No. de Lote:", lab.lote.id
+					rowTwo "Fecha de Caducidad:", lab.lote.caducidad
+					rowTwo "CEDI:", lab.lote.cedi
+					rowTwo "Fecha de Fabricación:", lab.lote.fabrica.fecha
+					rowTwo "Fabricante:", lab.lote.fabrica.nombre
+					rowTwo "Planta:", lab.lote.fabrica.planta
+					rowTwo "Cliente:", lab.lote.cliente.nombre
+					rowTwo "Pedido:", lab.lote.cliente.pedido
+				]
+			),(
+				name   : "Serie"
+				title  : "Serie"
+				parent : @$window.$content.$back.$center.$centerDw
+				rows   : lab.lote.serie.map (e)-> rowOne("id:", e.id)
+			),(
+				name   : "Eventos"
+				title  : "Eventos"
+				parent : @$window.$content.$back.$right
+				rows   : lab.eventos.map (e)-> rowTri(e.fecha, e.reporte)
+			)
 		]
 
-		for field in fields
-			$row  = Ti.UI.createTableViewRow
-				selectedBackgroundColor: "#C8C8C8"
-			$view =  @$ 'view.tableRow', (_ro:true)
-
-			$view.add @$ 'label.tableRow.bold', (_ro:true, text: field.name)
-			$view.add @$ 'label.tableRow.norm', (_ro:true, text: field.value)
-
-			$row.add $view
-			$table.appendRow $row
-
-		@$window.$content.$back.$view[0].$view[0].add $table
-
-		$table = Ti.UI.createTableView
-			width      : Ti.UI.FILL
-			left       : 10
-			right      : 10
-			top        : 10
-			bottom     : 10
-			headerView : @$ 'label.tableHeader', (_ro: true, text: "Substancia Activa")
-
-		fields = [
-			(name: "Materia Prima", value: lab.materiaPrima.nombre )
-			(name: "Dosis"        , value: lab.materiaPrima.dosis)
-			(name: "Proveedor"    , value: lab.materiaPrima.proveedor)
-			(name: "Lote"         , value: lab.materiaPrima.lote)
-		]
-		for field in fields
-			$row  = Ti.UI.createTableViewRow
-				selectedBackgroundColor: "#C8C8C8"
-			$view =  @$ 'view.tableRow', (_ro:true)
-
-			$view.add @$ 'label.tableRow.bold', (_ro:true, text: field.name)
-			$view.add @$ 'label.tableRow.norm', (_ro:true, text: field.value)
-
-			$row.add $view
-			$table.appendRow $row
-
-		@$window.$content.$back.$view[0].$view[1].add $table
-
-		$table = Ti.UI.createTableView
-			width      : Ti.UI.FILL
-			left       : 10
-			right      : 10
-			top        : 10
-			bottom     : 10
-			headerView : @$ 'label.tableHeader', (_ro: true, text: "Lote")
-
-		fields = [
-			(name: "No. de Lote"         , value: lab.lote.id )
-			(name: "Fecha de Caducidad"  , value: lab.lote.caducidad)
-			(name: "CEDI"                , value: lab.lote.cedi)
-			(name: "Fecha de Fabricación", value: lab.lote.fabrica.fecha)
-			(name: "Fabricante"          , value: lab.lote.fabrica.nombre)
-			(name: "Planta"              , value: lab.lote.fabrica.planta)
-			(name: "Cliente"             , value: lab.lote.cliente.nombre)
-			(name: "Pedido"              , value: lab.lote.cliente.pedido)
-		]
-		
-		for field in fields
-			$row  = Ti.UI.createTableViewRow
-				selectedBackgroundColor: "#C8C8C8"
-			$view =  @$ 'view.tableRow', (_ro:true)
-
-			$view.add @$ 'label.tableRow.bold', (_ro:true, text: field.name)
-			$view.add @$ 'label.tableRow.norm', (_ro:true, text: field.value)
-
-			$row.add $view
-			$table.appendRow $row
-
-		@$window.$content.$back.$view[1].add $table
+		for table in tables
+			$tview = Ti.UI.createTableView
+				width      : Ti.UI.FILL
+				height     : Ti.UI.FILL
+				left       : 10
+				right      : 10
+				top        : 10
+				bottom     : 0
+				style      : Ti.UI.iPhone.TableViewStyle.PLAIN
+				headerView : @$ 'label.tableHeader', (_ro: true, text: table.title)
+			$tview.appendRow $row for $row in table.rows
+			table.parent.add $tview
+			@["$table#{table.name}"] = $tview

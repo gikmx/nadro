@@ -10,21 +10,36 @@ module.exports =
 		layout : 'horizontal'
 		backgroundColor : '#FFF'
 
-	'view.left':
+	'view#left':
 		height : Ti.UI.FILL
 		width  : '30%'
+		layout : 'vertical'
 
-	'view.center':
+	'view#leftUp':
+		width  : Ti.UI.FILL
+		height : '55%'
+
+	'view#leftDw':
+		width  : Ti.UI.FILL
+		height : '45%'
+
+	'view#center':
 		height : Ti.UI.FILL
 		width  : '40%'
+		layout : 'vertical'
 
-	'view.right':
+	'view#centerUp':
+		width  : Ti.UI.FILL
+		height : '80%'
+
+	'view#centerDw':
+		width  : Ti.UI.FILL
+		height : '20%'
+
+	'view#right':
 		height : Ti.UI.FILL
 		width  : '30%'
 
-	'view.halftop':
-		height : '50%'
-		width  : Ti.UI.FILL
 
 	'view#frontLineLeft':
 		zIndex : 99
@@ -44,16 +59,6 @@ module.exports =
 		height : Ti.UI.FILL
 		backgroundColor: '#C8C8C8'
 
-	'view#frontLineMiddle':
-		zIndex : 99
-		left   : 0
-		right  : 0 
-		height : 1
-		top    : '50%'
-		width  : '30%'
-		backgroundColor: '#C8C8C8'
-		
-
 	'label.tableHeader':
 		backgroundColor : 'rgb(47,102,18)'
 		height          : 30
@@ -64,12 +69,39 @@ module.exports =
 			fontWeight : 'bold'
 			fontSize   : '17pt'
 
-	'view.tableRow':
+	'view.tableRow.oneLine':
+		width: Ti.UI.FILL
+		height: 40
+		layout: 'horizontal'
+
+	'label.tableRow.oneLine.bold':
+		top    : 10
+		bottom : 10
+		left   : 20
+		height : 20
+		font   :
+			fontWeight: 'bold'
+			fontSize  : '16pt'
+		color: '#444'
+
+	'label.tableRow.oneLine.norm':
+		top    : 10
+		bottom : 10
+		left   : 20
+		height : 20
+		font   :
+			fontWeight: 'normal'
+			fontSize  : '16pt'
+		color: '#437A1C'
+
+
+	'view.tableRow.twoLine':
 		width: Ti.UI.FILL
 		height: 60
 		layout: 'vertical'
 
-	'label.tableRow.bold':
+
+	'label.tableRow.twoLine.bold':
 		top    : 10
 		left   : 20
 		height : 20
@@ -78,7 +110,7 @@ module.exports =
 			fontSize  : '16pt'
 		color: '#444'
 
-	'label.tableRow.norm':
+	'label.tableRow.twoLine.norm':
 		bottom : 10
 		left   : 20
 		height : 20
@@ -86,3 +118,23 @@ module.exports =
 			fontWeight: 'normal'
 			fontSize  : '16pt'
 		color: '#437A1C'
+
+	'view.tableRow.triLine':
+		width  : Ti.UI.FILL
+		height : Ti.UI.SIZE
+		layout : 'vertical'
+
+	'label.tableRow.triLine.norm':
+		top    : 10
+		left   : 20
+		height : Ti.UI.SIZE
+		width  : Ti.UI.SIZE
+		font   :
+			fontWeight: 'normal'
+			fontSize  : '16pt'
+		color: '#437A1C'
+
+	'imageView.tableRow.triLine':
+		image  : 'eventos.png'
+		height : 20
+		left   : 20

@@ -3,7 +3,7 @@ module.exports = [
 		id           : "PF000000001234567890"
 		descripcion  : "Celebrex"
 		presentacion : "Caja con 2 cápsulas de 200mg"
-		precio       : 400
+		precio       : "400"
 		formula      : "Celecoxib 200mg"
 
 		materiaPrima :
@@ -70,7 +70,7 @@ module.exports = [
 		id            : "SF000000001111112468"
 		descripcion   : "Posipen"
 		presentacion  : "Caja con 4 cápsulas de 500mg"
-		precioPublico : 240
+		precioPublico : "240"
 		formula       : "Dicloxacilina sódica monohidratada 500mg"
 
 		materiaPrima :
