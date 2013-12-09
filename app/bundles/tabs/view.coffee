@@ -24,5 +24,5 @@ module.exports = class extends Bundle
 			window : @genealogy.$window
 			title  : @genealogy.title
 
-	open: (tab=0)->
+	open: ()->
 		@$tabGroup.open animated:true

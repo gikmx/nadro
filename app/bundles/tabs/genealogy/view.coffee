@@ -8,4 +8,7 @@ module.exports = class extends Bundle
 		
 		super '/bundles/tabs/genealogy'
 
-		@$ 'window', title: @title
+		@$ 'window.tabbed', title: @title
+
+		@$window.$ 'view#header'
+		@$window.$header.$ 'label.header', text: @title
