@@ -19,7 +19,7 @@ login.onOpen ->
 				alert('Terminado')
 
 			onResult = (e)->
-
+				
 				e.source.blur()
 
 				isSerial = e.source.value.match /^[PS]F/

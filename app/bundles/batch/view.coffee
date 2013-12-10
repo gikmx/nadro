@@ -51,7 +51,7 @@ module.exports = class extends Bundle
 		else
 			@$window.$header.$searchBar.value = value
 			@search @$window.$header.$searchBar
-			args.shift().call @, @$window.$header.$searchBar
+			args.shift().call @, source: @$window.$header.$searchBar
 
 	search: (source)->
 
