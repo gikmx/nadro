@@ -1,4 +1,5 @@
-require './hacks'
+require './forceUI'
+
 Bundle = 
 	login  : require '/bundles/login/view'
 	search : require '/bundles/search/view'
