@@ -49,3 +49,10 @@ module.exports =
 		right    : 10
 		color    : "#437A1C"
 		hintText : 'Requerido'
+
+	'textField.password':
+		passwordMask : true
+		width        : Ti.UI.FILL
+		right        : 10
+		color        : "#437A1C"
+		hintText     : 'Requerido'

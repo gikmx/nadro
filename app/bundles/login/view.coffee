@@ -24,7 +24,7 @@ module.exports = class extends Bundle
 		@$window.$contain.$login.$view[0].$ 'label', text: "Usuario:"
 		@$window.$contain.$login.$view[0].$ 'textField'
 		@$window.$contain.$login.$view[1].$ 'label', text: "Contraseña:"
-		@$window.$contain.$login.$view[1].$ 'textField'
+		@$window.$contain.$login.$view[1].$ 'textField.password'
 
 		@$window.open()
 
