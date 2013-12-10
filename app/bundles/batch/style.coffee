@@ -44,7 +44,7 @@ module.exports =
 	'view#rightUp':
 		width  : Ti.UI.FILL
 		height : '30%'
-		backgroundImage: 'map.png'
+		backgroundImage: 'mapBatch.png'
 
 	'view#rightDw':
 		width  : Ti.UI.FILL
