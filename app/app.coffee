@@ -1,3 +1,4 @@
+require './hacks'
 Bundle = 
 	login  : require '/bundles/login/view'
 	search : require '/bundles/search/view'
@@ -15,3 +16,5 @@ login.onClick ->
 
 	search.onSearch ->
 		alert('search')
+
+
