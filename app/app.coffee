@@ -4,21 +4,19 @@ Bundle =
 	login  : require '/bundles/login/view'
 	search : require '/bundles/search/view'
 	qread  : require '/bundles/qread/view'
+	batch  : require '/bundles/batch/view'
 
 login = new Bundle.login()
+login.onOpen ->
 
-login.onClick ->
+	login.onClick ->
 
-	search = new Bundle.search()
-	search.open()
+		search = new Bundle.search()
+		search.onOpen ->
 
-	search.onClick ->
-		qread = new Bundle.qread()
-		qread.onResult (result)->
+			search.onClick ->
+				qread = new Bundle.qread()
+				qread.onResult (result)-> alert(result)
 
-			alert(result)
-
-	search.onSearch ->
-		alert('search')
-
-
+			search.onSearch ->
+				batch = new Bundle.batch()

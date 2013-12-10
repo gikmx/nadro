@@ -12,13 +12,12 @@ module.exports = class extends Bundle
 		@$window.$container.$ 'searchBar'
 		@$window.$container.$ 'button#camera'
 
-	open:->
+	onOpen: (callback)->
+		@$window.addEventListener 'open', (e)=> callback.call @, e
 		@$window.open()
 
 	onSearch:(callback)->
-		@$window.$container.$searchBar.addEventListener "return", (e)=>
-			callback.call @, e
+		@$window.$container.$searchBar.addEventListener "return", (e)=> callback.call @, e
 
 	onClick:(callback)->
-		@$window.$container.$camera.addEventListener "click", (e)=>
-			callback.call @, e
+		@$window.$container.$camera.addEventListener "click", (e)=> callback.call @, e

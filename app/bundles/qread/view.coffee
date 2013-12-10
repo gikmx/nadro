@@ -33,7 +33,9 @@ module.exports = class extends Bundle
 
 	onResult: (callback)->
 
-		onSuccess = (e)=> callback e.result
+		onSuccess = (e)=>
+			@$window = null
+			callback e.result
 
 		Barcode.removeEventListener('success', onSuccess) if beenOpened
 		Barcode.addEventListener('success', onSuccess)

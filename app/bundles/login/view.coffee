@@ -26,6 +26,8 @@ module.exports = class extends Bundle
 		@$window.$contain.$login.$view[1].$ 'label', text: "Contraseña:"
 		@$window.$contain.$login.$view[1].$ 'textField.password'
 
+	onOpen: (callback)->
+		@$window.addEventListener 'open', (e)=> callback.call @, e
 		@$window.open()
 
 	onClick: (callback)->
