@@ -31,8 +31,9 @@
         <target device="mobileweb">false</target>
     </deployment-targets>
 
-
-    <modules/>
+    <modules>
+        <module platform="iphone" version="1.8.3">ti.barcode</module>
+    </modules>
 
     <plugins>
         <plugin>ti.coffee</plugin>
