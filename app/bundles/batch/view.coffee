@@ -44,12 +44,14 @@ module.exports = class extends Bundle
 	onSearch: (callback)->
 		args = Array::slice.call arguments
 		value = if args.length and typeof args[0] is 'string' then args.shift() else false
-		@$window.$header.$searchBar.addEventListener 'return', (e)=>
-			args.shift().call @, e
 
-		if value
+		if not value
+			@$window.$header.$searchBar.addEventListener 'return', (e)=>
+				args.shift().call @, e
+		else
 			@$window.$header.$searchBar.value = value
 			@search @$window.$header.$searchBar
+			args.shift().call @, @$window.$header.$searchBar
 
 	search: (source)->
 

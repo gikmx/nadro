@@ -17,7 +17,15 @@ module.exports = class extends Bundle
 		@$window.open()
 
 	onSearch:(callback)->
-		@$window.$container.$searchBar.addEventListener "return", (e)=> callback.call @, e
+		args = Array::slice.call arguments
+		value = if args.length and typeof args[0] is 'string' then args.shift() else false
+
+		if not value
+			@$window.$container.$searchBar.addEventListener 'return', (e)=>
+				args.shift().call @, e
+		else
+			@$window.$container.$searchBar.value = value
+			args.shift().call @, @$window.$container.$searchBar
 
 	onClick:(callback)->
 		@$window.$container.$camera.addEventListener "click", (e)=> callback.call @, e

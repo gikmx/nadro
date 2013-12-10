@@ -15,22 +15,20 @@ login.onOpen ->
 		search = new Bundle.search()
 		search.onOpen ->
 
-			search.onClick ->
-				qread = new Bundle.qread()
-				qread.onResult (result)-> alert(result)
-
-			search.onSearch (e)->
+			onResult = (e)->
 
 				e.source.blur()
 
-				# batch = new Bundle.batch()
-				# batch.onOpen ->
+				isSerial = e.source.value.match /^[PS]F/
+				target   = new Bundle[if isSerial then 'serial' else 'batch']()
 
-				# 	batch.onSearch '111', ->
+				target.onOpen ->
 
-				serial = new Bundle.serial()
-				serial.onOpen ->
+					target.onSearch e.source.value, ->
+						alert('Terminado')
 
-					serial.onSearch '111', ->
+			search.onClick ->
+				qread = new Bundle.qread()
+				qread.onResult (result)-> search.onSearch result, onResult
 
-						
+			search.onSearch onResult
