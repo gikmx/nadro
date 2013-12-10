@@ -2,14 +2,18 @@ module.exports =
 
 	'view#overlay':
 		backgroundColor : 'transparent'
-		left            : 0
-		right           : 0
-		bottom          : 0
-		top             : 0
+		width: Ti.UI.FILL
+		height: Ti.UI.FILL
 
 	'button#cancel':
-		backgroundColor : 'red'
+		top             : 20
+		backgroundColor : '#FF0011'
 		borderRadius    : 5
-		title           : ' Cancelar '
+		height          : 30
+		width           : 100
+		title           : 'Cancelar'
 		color           : '#FFF'
-		font            : fontWeight: 'bold'
+		font            :
+			fontWeight : 'bold'
+			fontSize   : '16pt'
+

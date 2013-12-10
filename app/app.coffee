@@ -9,10 +9,13 @@ login = new Bundle.login()
 login.onClick ->
 
 	search = new Bundle.search()
-	
 	search.open()
-	
-	search.onClick -> new Bundle.qread()
+
+	search.onClick ->
+		qread = new Bundle.qread()
+		qread.onResult (result)->
+
+			alert(result)
 
 	search.onSearch ->
 		alert('search')

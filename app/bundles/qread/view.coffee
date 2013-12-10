@@ -2,36 +2,41 @@ Bundle = require '/lib/bundle'
 
 Barcode = require 'ti.barcode'
 
-Barcode.allowRotation    = true
-Barcode.displayedMessage = ""
-Barcode.useLED           = true
+Barcode.allowRotation    = false
+Barcode.displayedMessage = ''
+Barcode.useLED           = false
 
 module.exports = class extends Bundle
 
-	title: "Lector de Códigos QR"
+	beenOpened = false
+
+	title: 'Lector de Códigos QR'
 
 	constructor: ->
 		super '/bundles/qread'
 
 		@$ 'window', title: @title
 
-		@$window.$ 'view#overlay'
-		@$window.$overlay.$ 'button#cancel'
+		@$ 'view#overlay'
+		@$overlay.$ 'button#cancel'
 
-		@$window.addEventListener "open", =>
-			Barcode.capture
-				animate       : true
-				overlay       : @$window.$overlay
-				showCancel    : false
-				showRectangle : false
-				keepOpen      : false
+		@$window.addEventListener 'open', => Barcode.capture
+			animate       : false
+			overlay       : @$overlay
+			showCancel    : false
+			showRectangle : false
+			keepOpen      : false
 
-		@$window.$overlay.$cancel.addEventListener "click", -> Barcode.cancel()
+		@$overlay.$cancel.addEventListener 'click', -> Barcode.cancel()
+		
+		Barcode.addEventListener 'cancel', (e)=> @$window.close()
 
+	onResult: (callback)->
 
-		Barcode.addEventListener "success", (e) ->
-			alert(e.result)
+		onSuccess = (e)=> callback e.result
 
+		Barcode.removeEventListener('success', onSuccess) if beenOpened
+		Barcode.addEventListener('success', onSuccess)
+		
 		@$window.open()
-
-
+		beenOpened = true
