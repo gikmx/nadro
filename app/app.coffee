@@ -16,7 +16,7 @@ login.onOpen ->
 		search.onOpen ->
 
 			onFinish = ->
-				alert('Terminado')
+				Ti.API.info('Terminado')
 
 			onResult = (e)->
 				
