@@ -5,7 +5,7 @@ Bundle = require '/lib/bundle'
 
 module.exports = class extends Bundle
 
-	title: "Principal"
+	title: "Lotes"
 
 	constructor: ->
 
@@ -146,5 +146,6 @@ module.exports = class extends Bundle
 			table.parent.add $tview
 			@["$table#{table.name}"] = $tview
 
-	open: ()->
-		@$window.open animated:true
+	onOpen: (callback)->
+		@$window.addEventListener 'open', (e)=> callback.call @, e
+		@$window.open animated: true

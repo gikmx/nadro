@@ -18,5 +18,11 @@ login.onOpen ->
 				qread = new Bundle.qread()
 				qread.onResult (result)-> alert(result)
 
-			search.onSearch ->
+			search.onSearch (e)->
+
+				e.source.blur()
+
 				batch = new Bundle.batch()
+				batch.onOpen ->
+
+					alert('Lotes abiertos!!')
