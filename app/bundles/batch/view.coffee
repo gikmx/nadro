@@ -25,6 +25,7 @@ module.exports = class extends Bundle
 		@$window.$content.$ 'view#frontLineHeader'
 		@$window.$content.$ 'view#frontLineLeft'
 		@$window.$content.$ 'view#frontLineRight'
+		@$window.$content.$ 'view#frontLineMiddleRight'
 
 		@$window.$content.$back.$ 'view#left'
 		@$window.$content.$back.$ 'view#center'
@@ -36,11 +37,19 @@ module.exports = class extends Bundle
 		@$window.$content.$back.$center.$ 'view#centerUp'
 		@$window.$content.$back.$center.$ 'view#centerDw'
 
+		@$window.$content.$back.$right.$ 'view#rightUp'
+		@$window.$content.$back.$right.$ 'view#rightDw'
+
 
 	onSearch: (callback)->
+		args = Array::slice.call arguments
+		value = if args.length and typeof args[0] is 'string' then args.shift() else false
 		@$window.$header.$searchBar.addEventListener 'return', (e)=>
-			callback.call @, e
+			args.shift().call @, e
 
+		if value
+			@$window.$header.$searchBar.value = value
+			@search @$window.$header.$searchBar
 
 	search: (source)->
 
@@ -60,8 +69,9 @@ module.exports = class extends Bundle
 			return 
 
 		rowOne = (name, value)=>
-			$row = Ti.UI.createTableViewRow selectedBackgroundColor: "#C8C8C8"
-			$row.add ($view = @$ 'view.tableRow.oneLine', _ro:true)
+			$row = Ti.UI.createTableViewRow
+				selectedBackgroundColor: "#C8C8C8"
+			$row.add ($view = @$ 'view.tableRow.oneLine', (_ro:true))
 			$view.add @$ 'label.tableRow.oneLine.bold', (_ro:true, text: name)
 			$view.add @$ 'label.tableRow.oneLine.norm', (_ro:true, text: value)
 			return $row
@@ -81,6 +91,23 @@ module.exports = class extends Bundle
 			$view1.add ($view2 = @$ 'view.tableRow.oneLine' , (_ro:true))
 			$view2.add @$ 'imageView.tableRow.triLine'      , (_ro:true)
 			$view2.add @$ 'label.tableRow.oneLine.bold'     , (_ro:true, text: date)
+			return $row
+
+		rowQtr = (tipo, alerta)=>
+			$row  = Ti.UI.createTableViewRow
+				layout: 'vertical'
+				selectedBackgroundColor: "#C8C8C8"
+
+			Tipo = tipo[0].toUpperCase() + tipo.slice(1)
+
+			$row.add ($view1 = @$ 'view.tableRow.oneLine' , (_ro:true, bottom:0))
+			$view1.add @$ "imageView.tableRow.#{tipo}"    , (_ro:true)
+			$view1.add @$ 'label.tableRow.oneLine.bold'   , (_ro:true, text: Tipo)
+
+
+			$row.add ($view2 = @$ 'view.tableRow.triLine' , (_ro:true, bottom: 10))
+			$view2.add @$ 'label.tableRow.triLine.norm'     , (_ro:true, text: alerta)
+
 			return $row
 
 		tables = [
@@ -125,10 +152,10 @@ module.exports = class extends Bundle
 				parent : @$window.$content.$back.$center.$centerDw
 				rows   : lab.lote.serie.map (e)-> rowOne("id:", e.id)
 			),(
-				name   : "Eventos"
-				title  : "Eventos"
-				parent : @$window.$content.$back.$right
-				rows   : lab.eventos.map (e)-> rowTri(e.fecha, e.reporte)
+				name   : "Alertas"
+				title  : "Alertas"
+				parent : @$window.$content.$back.$right.$rightDw
+				rows   : lab.alertas.map (e)-> rowQtr(e.tipo, e.alerta)
 			)
 		]
 

@@ -64,6 +64,19 @@ module.exports = [
 				reporte : "Entrega del farmaco en el CEDIS NADRO Morelia"
 				geo     : (lat: "19.291165", lon: "-99.623975")
 			)
+		],
+
+		alertas: [
+			(
+				tipo   : "amarilla"
+				alerta : "Devolución de medicamentos que corresponden a este lote."
+			),(
+				tipo   : "roja"
+				alerta : "Se consultó medicamento falsificado bajo este número de lote."
+			),(
+				tipo   : "roja"
+				alerta : "Recall de producto que corresponde a este lote."
+			)
 		]
 	),
 	(
@@ -131,7 +144,21 @@ module.exports = [
 				reporte : "Entrega del farmaco en el CEDIS NADRO México Sur"
 				geo     : (loc: "19.687395", lon: "-100.550727")
 			)
+		],
+
+		alertas: [
+			(
+				tipo   : "amarilla"
+				alerta : "Medicamento con fecha de caducidad menor a un año próxima a vencer."
+			),(
+				tipo   : "roja"
+				alerta : "Se consultó medicamento falsificado bajo este número de lote."
+			),(
+				tipo   : "roja"
+				alerta : "Recall de producto que corresponde a este lote."
+			)
 		]
+
 	),
 ]
 

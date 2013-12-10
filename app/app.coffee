@@ -25,4 +25,5 @@ login.onOpen ->
 				batch = new Bundle.batch()
 				batch.onOpen ->
 
-					alert('Lotes abiertos!!')
+					batch.onSearch '111', ->
+						
