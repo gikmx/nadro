@@ -3,7 +3,6 @@ Data   =
 
 med = Data.genealogy[0]
 
-alert(Data.genealogy)
 
 Bundle = require '/lib/bundle'
 

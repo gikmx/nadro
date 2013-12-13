@@ -18,6 +18,8 @@ module.exports = class extends Bundle
 		@$window.$header.$ 'searchBar.header'
 		@$window.$header.$ 'label.header', text: @title
 
+		@$window.$header.$ 'button#qreader'
+
 		@$window.$ 'view#content'
 
 		@$window.$content.$ 'view#back'
@@ -39,6 +41,10 @@ module.exports = class extends Bundle
 
 	onSearch: (callback)->
 		@$window.$header.$searchBar.addEventListener 'return', (e)=>
+			callback.call @, e
+
+	onScan: (callback)->
+		@$window.$header.$qreader.addEventListener 'click', (e)=>
 			callback.call @, e
 
 

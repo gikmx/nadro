@@ -3,6 +3,13 @@ module.exports =
 	'searchBar.header':
 		hintText     : "Buscar Lote"
 
+	'button#qreader':
+		width           : 80
+		height          : 30
+		backgroundColor : '#C8C8C8'
+		borderRadius    : 5
+		title           : 'Escanear'
+
 	'view#back':
 		zIndex : 0
 		height : Ti.UI.FILL

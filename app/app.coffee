@@ -1,11 +1,23 @@
+require './forceUI'
+
 
 Bundle = 
-	login : new (require '/bundles/login/view')
-	tabs  : new (require '/bundles/tabs/view')
+	qread   : require '/bundles/qread/view'
+	login   : require '/bundles/login/view'
+	tabs    : require '/bundles/tabs/view'
 
-Bundle.login.onClick ->
+login = new Bundle.login()
+login.onClick ->
+	tabs = new Bundle.tabs()
 
-	Bundle.tabs.open()
+	tabs.open()
 
-	Bundle.tabs.dashboard.onSearch (e)->
-		Bundle.tabs.dashboard.search e.source
+	tabs.dashboard.onSearch (e)->
+		tabs.dashboard.search e.source
+
+	tabs.dashboard.onScan ->
+		qread = new Bundle.qread()
+		qread.onResult (result)->
+			$searchBar = tabs.dashboard.$window.$header.$searchBar
+			$searchBar.value = result
+			tabs.dashboard.search $searchBar
